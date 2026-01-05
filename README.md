@@ -2,8 +2,6 @@
 
 An end-to-end **Azure Data Engineering** project that ingests user-activity events (CSV/JSON), lands raw data in **ADLS Gen2 (Bronze)**, transforms it with **Azure Databricks (PySpark)** into **Silver/Gold** layers, loads curated metrics to **Azure SQL / Synapse**, and powers dashboards in **Power BI**.
 
-> Built to be **GitHub portfolio-ready**: includes sample data, ingestion scripts, Databricks notebooks, SQL schema, and Azure Data Factory (ADF) templates.
----
 
 ## Architecture
 
