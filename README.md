@@ -5,7 +5,7 @@ An end-to-end **Azure Data Engineering** project that ingests user-activity even
 
 ## Architecture
 
-```mermaid
+```
 flowchart TD
   A[Source: API/CSV/JSON] --> B[Azure Data Factory - Ingestion]
   B --> C[ADLS Gen2 - Bronze (raw)]
