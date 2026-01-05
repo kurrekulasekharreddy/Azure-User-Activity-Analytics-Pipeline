@@ -1,0 +1,67 @@
+{
+  "name": "pl_user_activity_bronze_to_gold",
+  "properties": {
+    "description": "Template pipeline: Copy raw to ADLS bronze, run Databricks notebooks to create silver/gold, load to SQL.",
+    "activities": [
+      {
+        "name": "Copy_Raw_To_Bronze",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource"
+          },
+          "sink": {
+            "type": "DelimitedTextSink"
+          }
+        }
+      },
+      {
+        "name": "Databricks_Bronze_To_Silver",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Copy_Raw_To_Bronze",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/Shared/01_bronze_to_silver",
+          "baseParameters": {
+            "bronze_path": "abfss://bronze@<storage>.dfs.core.windows.net/user_activity/",
+            "silver_path": "abfss://silver@<storage>.dfs.core.windows.net/user_activity/"
+          }
+        }
+      },
+      {
+        "name": "Databricks_Silver_To_Gold_And_Load_SQL",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Databricks_Bronze_To_Silver",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/Shared/02_silver_to_gold_and_load_sql",
+          "baseParameters": {
+            "silver_path": "abfss://silver@<storage>.dfs.core.windows.net/user_activity/",
+            "gold_path": "abfss://gold@<storage>.dfs.core.windows.net/user_activity/",
+            "sql_jdbc_url": "",
+            "sql_user": "",
+            "sql_password": ""
+          }
+        }
+      }
+    ]
+  }
+}

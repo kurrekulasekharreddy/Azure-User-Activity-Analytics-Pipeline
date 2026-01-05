@@ -1,0 +1,9 @@
+{
+  "name": "ls_azure_sql_example",
+  "properties": {
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=<server>.database.windows.net;Initial Catalog=<db>;User ID=<user>;Password=<password>"
+    }
+  }
+}

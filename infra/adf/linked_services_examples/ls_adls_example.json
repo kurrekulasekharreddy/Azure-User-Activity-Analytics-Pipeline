@@ -1,0 +1,15 @@
+{
+  "name": "ls_adls_gen2_example",
+  "properties": {
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://<storage>.dfs.core.windows.net",
+      "servicePrincipalId": "<client-id>",
+      "servicePrincipalKey": {
+        "type": "SecureString",
+        "value": "<client-secret>"
+      },
+      "tenant": "<tenant-id>"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+-- Azure SQL / Synapse (Dedicated SQL pool) compatible
+-- Create schema if not exists (Azure SQL: schema exists by default as dbo)
+-- For Synapse, you can create a separate schema.
+-- CREATE SCHEMA analytics;

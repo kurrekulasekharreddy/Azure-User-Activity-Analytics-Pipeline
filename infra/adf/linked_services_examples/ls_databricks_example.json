@@ -1,0 +1,13 @@
+{
+  "name": "ls_databricks_example",
+  "properties": {
+    "type": "AzureDatabricks",
+    "typeProperties": {
+      "domain": "https://adb-<workspace-id>.<region>.azuredatabricks.net",
+      "accessToken": {
+        "type": "SecureString",
+        "value": "<databricks-pat-token>"
+      }
+    }
+  }
+}

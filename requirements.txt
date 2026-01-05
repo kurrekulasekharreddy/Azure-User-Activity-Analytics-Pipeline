@@ -1,0 +1,6 @@
+azure-storage-blob>=12.19.0
+python-dotenv>=1.0.1
+pandas>=2.0.0
+pyarrow>=14.0.0
+click>=8.1.7
+rich>=13.7.0
